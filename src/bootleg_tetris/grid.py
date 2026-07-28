@@ -9,26 +9,26 @@ from .block import Block
 
 class Grid:
     """
-    A coloured grid of square cells in which player interactions with the game are possible.
+    The game board, a coloured grid of square cells.
 
     Static attributes:
         - COLS : The number of columns in the grid
         - ROWS : The number of rows in the grid
-        - GRIDS : A list of each instance of Grid
-        - BLOCKS : A list of the possible block types (e.g., I-block)
-        - NEXT_BLOCKS : The list used in the generation of  
-        - LEVEL : The game's current level
+        - GRIDS : A list of each grid instance
+        - BLOCKS : A list of the possible block types
+        - NEXT_BLOCKS : The block queue
+        - LEVEL : The game's current level, which affects block drop speed
         - SPEED : The game's current soft drop rate
-        - __SCORE : The scoring increment values based on the quantity of lines immediately cleared
+        - __SCORE : The scoring increments, based on the quantity of lines immediately cleared
 
     Attributes:
-        - __x : The x-coordinate of grid in the surface
-        - __y : The y-coordinate of grid in the surface
+        - __x : The x-coordinate of the grid on the surface
+        - __y : The y-coordinate of the grid on the surface
         - __width : The width of the grid in pixels
         - __height : The height of the grid in pixels
-        - __cellLength : The length of each square cell in pixel
-        - __surface : The pygame surface that the grid will be drawn on
-        - __grid_index : The index of this grid object in the static list GRIDS
+        - __cellLength : The length of each square cell in pixels
+        - __surface : The surface that the grid will be drawn on
+        - __grid_index : The index of this grid object in the static list `GRIDS`
         - block : The controllable block of this grid
         - hold : The block type of the block being held
         - __block_index : The The index of the current block in the static list NEXT_BLOCKS
@@ -53,7 +53,7 @@ class Grid:
     NEXT_BLOCKS: list[str] = []
     LEVEL = 0
     SPEED = 35
-    __SCORE = {
+    __SCORE: dict[int, int] = {
         0 : 0, # Just in case
         1 : 40,
         2 : 100,
@@ -171,7 +171,7 @@ class Grid:
 
         # Generating new block if there are none
         if len(Grid.NEXT_BLOCKS) > len(Grid.GRIDS):
-            Grid.NEXT_BLOCKS = [Grid.BLOCKS[randint(0, len(Grid.BLOCKS) - 1)]]
+            Grid.NEXT_BLOCKS = [Grid.BLOCKS[randint(0, len(Grid.BLOCKS) - 1)]] # NOSONAR python:S2245 This is not a security context
 
         self.__get_next_block()
 
@@ -368,7 +368,7 @@ class Grid:
                 break
 
         if top_row is not None:
-            random_col = randint(0, Grid.COLS - 1)
+            random_col = randint(0, Grid.COLS - 1) # NOSONAR python:S2245 This is not a security context
 
             if self.lines_received > top_row:
                 self.lose = True
@@ -471,7 +471,7 @@ class Grid:
             pass
 
         # Appending generated block to queue
-        Grid.NEXT_BLOCKS.append(blocks[randint(0, len(blocks) - 1)])
+        Grid.NEXT_BLOCKS.append(blocks[randint(0, len(blocks) - 1)]) # NOSONAR python:S2245 This is not a security context
 
     def __repr__(self) -> str:
         '''repr override'''
