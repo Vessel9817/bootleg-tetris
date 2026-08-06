@@ -3,13 +3,13 @@
 # Please see the documentation for all configuration options:
 # https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
 
-# Credit: https://docs.github.com/en/code-security/dependabot/working-with-dependabot/dependabot-options-reference#required-keys
 version: 2
 updates:
-  # Enable version updates for npm
   - package-ecosystem: 'pip'
-    # Look for `pyproject.toml` files
     directory: '/'
-    # Check the pip registry for updates every day (weekdays)
     schedule:
-      interval: 'daily'
+      interval: 'daily' # weekdays
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
