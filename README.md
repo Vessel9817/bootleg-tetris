@@ -1,6 +1,7 @@
 # Bootleg-Tetris
 
-[![CI](https://github.com/Vessel9817/Bootleg-Tetris/actions/workflows/ci.yml/badge.svg)](https://github.com/Vessel9817/Bootleg-Tetris/actions/workflows/ci.yml)
+[![AGPL-3.0-or-later license][license-badge]](LICENSE)
+[![CI][ci-badge]][ci-workflow]
 
 A simple recreation of competitive two-player Tetris
 
@@ -54,6 +55,7 @@ py -m bootleg_tetris
 ### Not implemented
 
 - Title screen
+- Pause menu
 - A visualization of how many lines are about to be received
 - Highscores
 - Sound effects
@@ -71,3 +73,7 @@ py -m bootleg_tetris
 
 - Online play
 - 3+ player support
+
+[license-badge]: https://raw.githubusercontent.com/Vessel9817/bootleg-tetris/refs/heads/main/badge.svg
+[ci-badge]: https://github.com/Vessel9817/Bootleg-Tetris/actions/workflows/ci.yml/badge.svg
+[ci-workflow]: https://github.com/Vessel9817/Bootleg-Tetris/actions/workflows/ci.yml
